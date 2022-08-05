@@ -17,4 +17,44 @@ body {
   padding: 8px;
   max-width: 320px;
   margin-bottom: 16px;
+  list-style: none;
+}
+
+ul{
+  padding-left: 0;
+}
+h2,p{
+  margin: 0;
+}
+
+.country-list_item {
+  display: flex;
+  align-items: center;
+  margin-bottom: 10px;
+  
+
+  
+}
+
+.country-list_img{
+    max-width: 60px;
+    margin-right: 10px;
+}
+
+.country-list_titel{
+  font-size: 28px;
+  font-weight: 800;
+}
+
+.country-list_paragraph{
+font-size: 24px;
+font-weight: 700;
+
+}
+
+.country-list_span{
+  margin-left: 10px;
+font-size: 20px;
+  font-weight: 500;
+
 }

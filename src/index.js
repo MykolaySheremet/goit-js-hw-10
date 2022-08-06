@@ -1,13 +1,16 @@
 import './css/styles.css';
 import Notiflix from 'notiflix';
 import debounce from 'lodash.debounce'
-// import fetchCountries from './fetchCountries'
+import {fetchCountries} from './fetchCountries'
+
+// console.log(fetchCountries);
+// console.log('hi artem');
 
 const DEBOUNCE_DELAY = 300;
 const input = document.querySelector('#search-box');
 const listOfCountry = document.querySelector('.country-list');
 const cardOfContryInfo = document.querySelector('.country-info');
-const BASE_URL = "https://restcountries.com/v3.1";
+
 
 input.addEventListener('input', debounce(serchCountries, DEBOUNCE_DELAY));
 
@@ -21,18 +24,29 @@ function serchCountries(e) {
     serchCountry = input.value.trim();
 
 
-
-    fetch(`${BASE_URL}/name/${serchCountry}?fields=name,capital,population,flags,languages`)
-        .then(response => response.json())
+    fetchCountries(serchCountry)
         .then((data => {
             generateContent(data);
+
             if (data.status === 404) {
                 Notiflix.Notify.failure("Oops, there is no country with that name")
                 return
             }
         }))
         .catch(eror=> Notiflix.Notify.failure("Error, try again"))
-}
+};
+
+    // fetch(`${BASE_URL}/name/${serchCountry}?fields=name,capital,population,flags,languages`)
+    //     .then(response => response.json())
+    //     .then((data => {
+    //         generateContent(data);
+    //         if (data.status === 404) {
+    //             Notiflix.Notify.failure("Oops, there is no country with that name")
+    //             return
+    //         }
+    //     }))
+    //     .catch(eror=> Notiflix.Notify.failure("Error, try again"))
+// }
 
 function generateContent(array) {
     const lengthOfArray = array.length
